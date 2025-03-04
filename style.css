@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: rgba(8, 0, 0, 0.941);
     color: white;
     font-family: Arial, sans-serif;
     animation: fadeIn 1.5s ease-in;
@@ -30,9 +30,16 @@ header {
     background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(50, 50, 50, 0.8)); /* Dark gradient */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
-
-
-
+/*
+.header-hidden {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+*/
 .header-container {
     display: flex;
     align-items: center;
@@ -88,16 +95,7 @@ section {
     position: relative;
     z-index: 1;
 }
-.project {
-    border: 1px solid white;
-    padding: 20px;
-    margin: 20px auto;
-    transition: transform 0.3s;
-    max-width: 600px;
-}
-.project:hover {
-    transform: scale(1.05);
-}
+
 button {
     background-color: white;
     color: black;
@@ -265,9 +263,31 @@ footer {
     box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
 }
 
-.contact-info h3 {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
+/* Contact Info Text */
+.contact-info p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    gap: 10px; /* Space between icon and text */
+}
+
+/* Contact Icons */
+.contact-info i {
+    font-size: 1.2rem;
+    color: bisque; /* Light blue */
+}
+
+/* Contact Links */
+.contact-info a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.contact-info a:hover {
+    color: #00aaff; /* Hover effect */
 }
 
 /* Contact Form Styling */
@@ -303,8 +323,8 @@ footer {
 /* Button Styling */
 .contact-form button {
     width: 100%;
-    background-color: #00aaff;
-    color: white;
+    background-color: beige;
+    color: black;
     font-size: 1rem;
     padding: 12px;
     border: none;
@@ -314,7 +334,7 @@ footer {
 }
 
 .contact-form button:hover {
-    background: #0088cc;
+    background: burlywood;
     transform: scale(1.05);
 }
 
@@ -332,15 +352,19 @@ footer {
 
 
 
-/* Projects Section */
+/* Projects Section - Now with Blurred Background */
 #projects {
     text-align: center;
-    padding: 50px 5%;
-    background: linear-gradient(to bottom, #121212, #000);
-    color: white;
+    padding: 50px 10%;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    backdrop-filter: blur(10px); /* Glass effect */
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    max-width: 90%;
+    margin: auto;
 }
 
-/* Project Cards */
+/* Project Container - Responsive Grid */
 .projects-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -349,7 +373,7 @@ footer {
     margin: 0 auto;
 }
 
-/* Project Card Styling */
+/* Project Card */
 .project-card {
     position: relative;
     overflow: hidden;
@@ -357,8 +381,12 @@ footer {
     box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
     transition: transform 0.3s ease-in-out;
     max-width: 100%;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent for glass effect */
+    backdrop-filter: blur(5px);
+    padding: 15px;
 }
 
+/* Hover Effect */
 .project-card:hover {
     transform: scale(1.05);
 }

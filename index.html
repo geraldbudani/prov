@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.rawgit.com/tengbao/vanta/master/dist/vanta.fog.min.js"></script>
 </head>
@@ -39,11 +41,16 @@
     
     <section id="about">
         <h2>About Me</h2>
-        
-        <p>I am Klea Uruci, a second-year Architecture student at Epoka University in Tirana. I have a strong passion for sustainable design and a keen eye for detail, which I integrate into my coursework. My academic journey at Epoka has provided me with a solid foundation in architectural design, structural engineering, environmental sustainability, and urban planning. I actively engage in design studios, where I explore creative approaches to spatial design and construction techniques. I am committed to creating spaces that balance functionality with aesthetic appeal, and I aspire to contribute to the future of architecture by addressing contemporary challenges through innovative and impactful design solutions. Currently, I am seeking an internship opportunity to apply my skills and further develop my knowledge in a practical, real-world setting.</p>
-        <a href="assests\Gerald-Budani(resume).pdf" download>
-            <button class="cv-button">Download CV</button>
-        </a>
+        <div class="about-container">
+            <div class="about-text">
+                <p><strong>Hello! I'm Klea Uruci</strong>, a passionate <span class="highlight">second-year Architecture student</span> at <strong>Epoka University</strong> in Tirana. I specialize in <span class="highlight">sustainable design</span> and have a keen eye for detail, ensuring functionality meets aesthetics.</p>
+                <p>My studies have provided me with a strong foundation in <strong>architectural design, structural engineering, urban planning,</strong> and <strong>environmental sustainability</strong>. I actively participate in design studios where I explore <span class="highlight">innovative spatial solutions</span> and cutting-edge construction techniques.</p>
+                <p>My goal is to contribute to architecture with designs that address contemporary challenges. Currently, I'm seeking an <span class="highlight">internship opportunity</span> where I can apply my skills in a practical, real-world setting.</p>
+                <a href="assests\Gerald-Budani(resume).pdf" download>
+                    <button class="cv-button">Download My CV</button>
+                </a>
+            </div>
+        </div>
     </section>
     
     <section id="projects">
@@ -77,45 +84,35 @@
     <section id="contact">
         <h2>Contact Me</h2>
         <div class="contact-container">
+            <!-- Contact Info with Icons -->
             <div class="contact-info">
-                <p><strong>Email:</strong> geraldbudani@gmail.com</p>
-                <p><strong>Phone:</strong> +123 456 789</p>
-                <p><strong>Location:</strong> Tirana, Albania</p>
+                <p><a href="mailto:geraldbudani@gmail.com"><i class="fas fa-envelope"></i> <strong>Email:</strong> geraldbudani@gmail.com</a></p>
+                <p><a href="tel:+123456789"><i class="fas fa-phone"></i> <strong>Phone:</strong> +123 456 789</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Tirana, Albania</p>
+                <p><a href="https://www.linkedin.com/in/yourprofile" target="_blank">
+                    <i class="fab fa-linkedin"></i> <strong>LinkedIn</strong>
+                </a></p>
+                <p><a href="https://www.instagram.com/yourprofile" target="_blank">
+                    <i class="fab fa-instagram"></i> <strong>Instagram</strong>
+                </a></p>
             </div>
+    
+            <!-- Contact Form -->
             <div class="contact-form">
                 <h3>Send a Message</h3>
                 <form action="https://formsubmit.co/geraldbudani@gmail.com" method="POST">
                     <input type="text" name="name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email" required>
                     <textarea name="message" placeholder="Your Message" required></textarea>
-                    <input type="hidden" name="_captcha" value="false">  <!-- Disable Captcha -->
-                    <input type="hidden" name="_next" value="thank-you.html"> 
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="thank-you.html">
                     <button type="submit">Send Message</button>
                 </form>
                 <p id="form-status"></p>
             </div>
         </div>
     </section>
-    
-   <script>
-        window.onload = function () {
-            VANTA.FOG({
-                el: "#background",
-                mouseControls: false,  // Disable cursor interaction
-                touchControls: false,  // Disable touch interaction
-                gyroControls: false,   // Disable gyroscope movement
-                minHeight: window.innerHeight,
-                minWidth: window.innerWidth,
-                highlightColor: 0x3B3A0A, // First color
-                midtoneColor: 0x6B4A2C,   // Second color
-                lowlightColor: 0x000000,   // Background color (black)
-                baseColor: 0x000000,       // Base color (black)
-                speed: 1.0,
-                zoom: 1.0
-            });
-        };
-
-
+    <script>
         document.querySelectorAll('.smooth-scroll').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -127,47 +124,42 @@
         });
     });
 });
-
     </script>
-
+<!--
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    let profilePic = document.getElementById("profilePic");
-    let popup = document.getElementById("popup");
-    let closePopup = document.getElementById("closePopup");
-
-    if (popup) {
-        popup.style.display = "none"; // Ensure it's hidden on page load
-    }
-
-    if (profilePic && popup && closePopup) {
-        // Open the pop-up when clicking the profile picture
-        profilePic.addEventListener("click", function () {
-            popup.style.display = "flex";
-        });
-
-        // Close the pop-up when clicking the close button
-        closePopup.addEventListener("click", function () {
-            popup.style.display = "none";
-        });
-
-        // Close the pop-up when clicking outside the image
-        popup.addEventListener("click", function (event) {
-            if (event.target === popup) {
-                popup.style.display = "none";
+    let lastScrollY = window.scrollY;
+    const header = document.querySelector("header");
+    let isScrollingUp = false;
+    let isScrollingDown = false;
+    let isHeaderHidden = false;
+    
+    window.addEventListener("scroll", function () {
+        let currentScrollY = window.scrollY;
+    
+        if (currentScrollY > lastScrollY && currentScrollY > 50) {
+            // Scrolling Down - Hide Header
+            if (!isHeaderHidden) {
+                header.classList.add("header-hidden");
+                isHeaderHidden = true;
             }
-        });
-    }
-});
-;
-
-</script>
-
-
+        } else if (currentScrollY < lastScrollY) {
+            // Scrolling Up - Show Header
+            if (isHeaderHidden) {
+                header.classList.remove("header-hidden");
+                isHeaderHidden = false;
+            }
+        }
+    
+        lastScrollY = currentScrollY;
+    });
+    </script>
+-->    
     
     
+
+
     <footer>
-        <p>&copy; 2025 Your Name</p>
+        <p>&copy; 2025 Created by <a href="https://www.instagram.com/gerald_budani/">GB</a></p>
     </footer>
 </body>
 
